@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, FlatList } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 export default function App() {
@@ -37,9 +38,7 @@ export default function App() {
           <View style={styles.itemContainer}>
             <Text>{item.nome}</Text>
             <TouchableOpacity onPress={() => remover(item.id)} >
-            <Text>Excluir</Text>
-              
-
+              <Icon name="trash" size={20} color="#ff6347" />
             </TouchableOpacity>
           </View>
         )}
