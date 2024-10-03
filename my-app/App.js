@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, FlatList } from 'react-native';
 
+
 export default function App() {
   const [tarefa, setTarefa] = useState('')
   const [tarefas, setTarefas] = useState([])
@@ -33,10 +34,12 @@ export default function App() {
         data={tarefas}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => (
-          <View>
+          <View style={styles.itemContainer}>
             <Text>{item.nome}</Text>
             <TouchableOpacity onPress={() => remover(item.id)} >
-              <Text>Excluir</Text>
+            <Text>Excluir</Text>
+              
+
             </TouchableOpacity>
           </View>
         )}
@@ -72,5 +75,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 });
