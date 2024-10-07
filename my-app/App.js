@@ -1,82 +1,55 @@
-import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, FlatList } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import React, { useState } from "react";
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
 export default function App() {
-  const [tarefa, setTarefa] = useState('')
-  const [tarefas, setTarefas] = useState([])
-  const [mensagem, setMensagem] = useState('Tela inicial')
+  const [produto, setProduto] = useState({ nome: '', preco: '', descricao: '' })
+  const [produtos, setProdutos] = useState([])
+
+  const aoDigitar = (nome, valor) => {
+    setProduto({ ...produto, [nome]: valor })
+
+  }
 
   const adicionar = () => {
-    setTarefas([...tarefas, { id: tarefas.length + 1, nome: tarefa }])
-    setTarefa('')
+    Alert.alert('Aqui vamos gravar o registro de produto.')
   }
 
-  const remover = (id) => {
-    setTarefas(tarefas.filter(item => item.id !== id))
-  }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title} >Lista de atividades</Text>
-      <TextInput style={styles.input}
-
-        placeholder='digite o Nome da tarefa'
-        value={tarefa}
-        onChangeText={text => setTarefa(text)}
-      />
-
-      <TouchableOpacity style={styles.btnAdd} onPress={adicionar}>
-        <Text style={styles.btnAddText} >Adicionar</Text>
-      </TouchableOpacity>
-
-      <FlatList
-        data={tarefas}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.itemContainer}>
-            <Text>{item.nome}</Text>
-            <TouchableOpacity onPress={() => remover(item.id)} >
-              <Icon name="trash" size={20} color="#ff6347" />
-            </TouchableOpacity>
-          </View>
-        )}
-      />
+    <View styles={styles.container}>
+      <Text styles={styles.title}>Cadastro de Produtos</Text>
+      <TextInput
+        placeholder="Informe o nome."
+        value={produto.nome}
+        onChangeText={(valor) => aoDigitar('nome', valor)} />
+      <TextInput
+        placeholder="Informe o preço."
+        value={produto.preco}
+        keyboardType="numeric"
+        onChangeText={(valor) => aoDigitar('preco', valor)} />
+      <TextInput
+        placeholder="Informe a descrição."
+        value={produto.descricao}
+        onChangeText={(valor) => aoDigitar('descricao', valor)} />
+      <View>
+        <TouchableOpacity onPress={adicionar}>
+          <Text>Adicionar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
-    padding: 25
+    padding: 20,
+    backgroundColor: '#fff'
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 20
-  },
-  input: {
-    backgroundColor: '#fff',
-    padding: 10,
-    fontSize: 16,
-    marginBottom: 10
-  },
-  btnAdd: {
-    backgroundColor: '#a9a9a9',
-    alignItems: 'center'
-
-  },
-  btnAddText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold'
-  },
-  itemContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    marginBottom: 20,
   }
 });
