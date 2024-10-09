@@ -1,28 +1,16 @@
 {
   "produtos": [
     {
-      "id": "1",
-      "nome": "Caneta",
-      "preco": 10,
-      "descricao": "Azul"
+      "id": "8004",
+      "nome": "Yy6",
+      "preco": "65",
+      "descricao": "Ttt"
     },
     {
-      "id": "74d2",
-      "nome": "Mouse",
-      "preco": "80",
-      "descricao": "Teste"
-    },
-    {
-      "id": "580e",
-      "nome": "Teclado ",
-      "preco": "250",
-      "descricao": "Teste 0500"
-    },
-    {
-      "id": "8f6c",
-      "nome": "Cadeira ",
-      "preco": "300",
-      "descricao": "Teste 0600"
+      "id": "fa8d",
+      "nome": "Caneta ",
+      "preco": "588",
+      "descricao": "Gdf"
     }
   ]
 }

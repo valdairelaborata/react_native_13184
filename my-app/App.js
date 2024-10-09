@@ -32,9 +32,22 @@ export default function App() {
 
   }
 
-  const excluir = (index) => {
-    const produtosTemp = produtos.filter((_, i) => i !== index)
-    setProdutos(produtosTemp)
+  const excluir = async (registro) => {
+
+    try {
+      await axios.delete(`${APIURL}/${registro.id}`)
+      Alert.alert('Registro excluido com sucesso!!!')
+
+      listar()
+
+    } catch (error) {
+      Alert.alert('Ocorreu um erro. Aqui deve ser gerado um log.')
+    }
+
+    await axios.delete(`${APIURL}/${registro.id}`)
+    Alert.alert('Registro excluido com sucesso!!!')
+
+    listar()
   }
 
   useEffect(() => {
@@ -44,7 +57,7 @@ export default function App() {
   const lista = ({ item, index }) => (
     <View style={styles.itens}>
       <Text>{item.nome} - {item.preco} - {item.descricao}</Text>
-      <TouchableOpacity onPress={() => excluir(index)} >
+      <TouchableOpacity onPress={() => excluir(item)} >
         <Icon name="trash" size={20} color='red' />
       </TouchableOpacity>
 
